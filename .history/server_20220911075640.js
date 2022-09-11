@@ -4,8 +4,6 @@ const cors = require("cors")
 const passport = require("passport")
 const cookieSession = require("cookie-session")
 const app = express()
-const passportSetup = require("./passport")
-
 
 app.use(
     cookieSession({
@@ -24,6 +22,4 @@ app.use(cors({
     credentials: true
 }))
 
-const port = process.env.PORT || 8080
-
-app.listen(port, ()=>console.log(`Listening on port ${port}`))
+const port = process.

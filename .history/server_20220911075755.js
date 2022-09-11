@@ -4,8 +4,6 @@ const cors = require("cors")
 const passport = require("passport")
 const cookieSession = require("cookie-session")
 const app = express()
-const passportSetup = require("./passport")
-
 
 app.use(
     cookieSession({
