@@ -2,6 +2,7 @@ import './App.css';
 // import { GoogleLogin } from 'react-google-login';
 import { isExpired, decodeToken } from "react-jwt";
 import { useEffect } from 'react';
+import axios from "axios"
 
 function App() {
   
@@ -31,7 +32,7 @@ function App() {
     return decoded
   }
 
-  const handleCredentialResponse = (response) => {
+  const handleCredentialResponse = async (response) => {
     const responsePayload = decodeJwtResponse(response.credential);
 
      console.log("ID: " + responsePayload.sub);
@@ -42,6 +43,19 @@ function App() {
      console.log("Email: " + responsePayload.email);
 
     console.log(response)
+
+    const rez = await axios({
+      method: 'post',
+      url: '/auth/login',
+      data: {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      }
+    });
+
+    
+    console.log(rez, "HOLE")
+    return rez // parses JSON response into native JavaScript objects
   }
 
   useEffect(() => {
@@ -56,8 +70,7 @@ function App() {
       <div id="g_id_onload"
          data-client_id={clientId}
          data-callback={"handleCredentialResponse"}
-        //  data-ux_mode="redirect"
-        //  data-login_uri="http://localhost:8080/google/callback"
+         
          >
 
           holal
