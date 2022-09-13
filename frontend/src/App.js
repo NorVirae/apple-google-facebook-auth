@@ -1,7 +1,9 @@
 import './App.css';
 // import { GoogleLogin } from 'react-google-login';
 import { isExpired, decodeToken } from "react-jwt";
+import FacebookLogin from "react-facebook-login"
 import { useEffect } from 'react';
+
 import axios from "axios"
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
 //   console.log(auth2)
 // });
 
-  const responseErrorGoogle = (response) => {
+  const responseFacebook = (response) => {
     console.log(response)
   }
 
@@ -60,6 +62,7 @@ function App() {
 
   useEffect(() => {
     window.handleCredentialResponse = handleCredentialResponse;
+   
  });
 
   let clientId = '797487001003-i1l0v8f95g0nbqbqqcdah9bse3pkubtc.apps.googleusercontent.com'
@@ -76,6 +79,13 @@ function App() {
           holal
     </div>
     <div className="g_id_signin" data-text="Google" data-type="standard"></div>
+
+    <FacebookLogin
+    appId="5366383623483875"
+    autoLoad={true}
+    fields="name,email,picture"
+    onClick={console.log("clicked")}
+    callback={responseFacebook} />
 
     {/* <GoogleLogin
           clientId={clientId}
